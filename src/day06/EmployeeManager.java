@@ -14,7 +14,7 @@ public class EmployeeManager {
     //    사원 정보를 저장할 배열
     static String[] memberNumbers = new String[count];
     static String[] memberName = new String[count];
-    static int[] memberAge = new int[count];
+    static String[] memberAge = new String[count];
     static String[] memberdepartments = new String[count];
 
     //    메뉴를 출력해주는 메서드
@@ -29,7 +29,7 @@ public class EmployeeManager {
         System.out.println("=======================");
     }
 
-    //    배열 추가 기능을 수행하는 메서드 / 나이
+    //    배열 추가 기능을 수행하는 메서드
     static String[] append(String[] arr, String data) {
 //        1. 배열의 크기를 1증가
         String[] temp = new String[count + 1];
@@ -43,23 +43,6 @@ public class EmployeeManager {
 
 //        4. temp의 주소를 arr로 옮기고 temp를 삭제
         return temp;
-    }
-
-    //    배열 추가 기능을 수행하는 메서드
-    static int[] appendAge(int[] arr, int data) {
-//        1. 배열의 크기를 1증가
-        int[] temp = new int[count + 1];
-
-//        2. 기존 배열데이터를 복사해서 신규 배열에 이동
-        for (int i = 0; i < count; i++) {
-            temp[i] = arr[i];
-        }
-//        3. 추가된 공간에 신규데이터를 삽입
-        temp[temp.length - 1] = data;
-
-//        4. temp의 주소를 arr로 옮기고 temp를 삭제
-        return temp;
-
     }
 
     //    프로그램을 종료하는 메서드
@@ -96,7 +79,7 @@ public class EmployeeManager {
         String name = sc.next();
 
         System.out.print("- 나이 : ");
-        int age = sc.nextInt();
+        String age = sc.next();
 
         System.out.print("- 부서 : ");
         String dep = sc.next();
@@ -104,17 +87,18 @@ public class EmployeeManager {
 //        배열 사이즈를 증가시키고 데이터를 추가하는 함수
         memberNumbers = append(memberNumbers, memberNum);
         memberName = append(memberName, name);
-        memberAge = appendAge(memberAge, age);
+        memberAge = append(memberAge, age);
         memberdepartments = append(memberdepartments, dep);
         count++;
     }
 
     static void showMemData() {
-        System.out.println("\n============ 전체 사원 정보============");
+        System.out.println("\n============ 전체 사원 정보 ============");
         System.out.println(" 사원          이름          나이          부서");
         for (int i = 0; i < count; i++) {
-            System.out.printf("%s         %s          %d          %s", memberNumbers, memberName, memberAge, memberdepartments);
+            System.out.printf("%s         %s          %s          %s\n", memberNumbers[i], memberName[i], memberAge[i], memberdepartments[i]);
         }
+        System.out.println("======================================");
     }
 
     public static void main(String[] args) {
