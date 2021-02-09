@@ -1,3 +1,9 @@
+//import day08.bank.Account;
+//import day08.bank.Banker;
+//import day08.bank.User;
+import  day08.bank.*;
+import day08.fruit.Apple;
+
 /**
  * API 문서 주성
  *
@@ -6,13 +12,15 @@
  * @since 2021.01.29 ~
  */
 public class Hello {
-    /*
-    메인 함수는 프로그램이 실행되는 영역
-    모든 자바 프로그램은 메인 함수에서 시작
-     */
+
     public static void main(String[] args) {
-//        아래 코드는 콘솔에 데이터를 출력하는 코드입니다.
-        System.out.println("Long time no see");
-        System.out.println("test");
+
+        Apple apple1= new Apple();
+        new day08.juice.Apple();
+
+        Banker kim=new Banker("김철수");
+        Account acc=new Account();
+        User park=new User("박영희");
+
     }
 }
