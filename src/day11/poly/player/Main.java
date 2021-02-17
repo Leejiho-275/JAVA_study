@@ -7,7 +7,13 @@ public class Main {
         Mage m = new Mage("mage1");
         Hunter h = new Hunter("hunter1");
 
+        /*
         m.meteo(w,h);
         m.meteo(w);
+        */
+
+        w.fireSlash(new Warrior("testWarrior"));
+        w.fireSlash(m);
+        w.fireSlash(h);
     }
 }
