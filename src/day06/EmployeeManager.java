@@ -265,28 +265,33 @@ public class EmployeeManager {
             showMenu();
 
             System.out.print("메뉴 입력 : ");
-            int selectNum = sc.nextInt();
-            switch (selectNum) {
-                case 1:
-                    insertMemData();
-                    break;
-                case 2:
-                    showMemData();
-                    break;
-                case 3:
-                    searchMemData();
-                    break;
-                case 4:
-                    modifyMemData();
-                    break;
-                case 5:
-                    deleteMemData();
-                    break;
-                case 6:
-                    exitProgram();
-                    break;
-                default:
-                    System.out.println("메뉴를 잘못 입력했습니다.");
+            try {
+                int selectNum = sc.nextInt();
+                switch (selectNum) {
+                    case 1:
+                        insertMemData();
+                        break;
+                    case 2:
+                        showMemData();
+                        break;
+                    case 3:
+                        searchMemData();
+                        break;
+                    case 4:
+                        modifyMemData();
+                        break;
+                    case 5:
+                        deleteMemData();
+                        break;
+                    case 6:
+                        exitProgram();
+                        break;
+                    default:
+                        System.out.println("메뉴를 잘못 입력했습니다.");
+                }
+            } catch (Exception e) {
+                sc.nextLine();
+                System.out.println("메뉴는 숫자로 입력하세요.");
             }
         }
     }
