@@ -88,21 +88,27 @@ public class MainClass {
 		 "# 이미 등록된 노래입니다."를 출력하세요.
 		 */
         if (!artists.containsKey(artist)) {
-            Set<String> songs = new HashSet<>();
-            if (!songs.contains(song)) {
-                songs.add(song);
-                artists.put(artist, songs);
-                System.out.printf("아티스트 %s님이 신규등록되었습니다.\n", artist);
-            } else {
-                System.out.println("# 이미 등록된 노래입니다.");
-            }
+            songs = new HashSet<>();
+
+
+            songs.add(song);
+
+
+            artists.put(artist, songs);
+            System.out.printf("# 아티스트 %s님이 신규등록되었습니다.\n", artist);
         } else {
-            if (!songs.contains(song)) {
+            boolean flag = false;
+            for (String value : artists.get(artist)) {
+                if (song.equals(value)) {
+                    flag = true;
+                }
+            }
+            if (flag) {
+                System.out.println("# 이미 등록된 노래입니다.");
+            } else {
                 songs.add(song);
                 artists.put(artist, songs);
-                System.out.printf("아티스트 %s님의 노래목록에 %s이(가) 추가되었습니다.\n", artist, song);
-            } else {
-                System.out.println("# 이미 등록된 노래입니다.");
+                System.out.printf("# 아티스트 %s님의 노래목록에 %s이(가) 추가되었습니다.\n", artist, song);
             }
         }
 
@@ -123,6 +129,12 @@ public class MainClass {
 		 2. 등록된 가수가 아니라면 "해당 아티스트는 등록되지 않았습니다."를 출력.
 		 */
 
+        if (artists.containsKey(artist)) {
+            System.out.printf("%s님의 노래목록\n", artist);
+            System.out.println(artists.get(artist));
+        } else {
+            System.out.println("해당 아트스트는 등록되지 않았습니다.");
+        }
 
     }
 
