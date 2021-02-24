@@ -46,6 +46,8 @@ public class Inventory {
             Product p = products.get(products.indexOf(product));
             p.setPrice(newPrice);
             System.out.printf("가격이 %d원으로 변경되었습니다.\n", newPrice);
+            // 총액 갱신
+            p.setTotalPrice(newPrice * p.getAmount());
         } else {
             System.out.println("검색하신 제품은 존재하지 않습니다.");
         }
@@ -57,6 +59,7 @@ public class Inventory {
             Product p = products.get(products.indexOf(product));
             p.setAmount(newAmount);
             System.out.printf("재고수량이 %d로 변경되었습니다.\n", newAmount);
+            p.setTotalPrice(newAmount * p.getPrice());
         } else {
             System.out.println("검색하신 제품은 존재하지 않습니다.");
         }
@@ -68,9 +71,9 @@ public class Inventory {
     }
 
     // 바코드 번호로 리스트에서 특정 제품 객체를 찾아서 리턴하는 메서드
-    public Product getProduct(String barcode){
-        for(Product product:products){
-            if(barcode.equals(product.getBarcode())){
+    public Product getProduct(String barcode) {
+        for (Product product : products) {
+            if (barcode.equals(product.getBarcode())) {
                 return product;
             }
         }

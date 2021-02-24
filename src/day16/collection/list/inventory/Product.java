@@ -65,6 +65,7 @@ public class Product {
 
     public void setPrice(int price) {
         this.price = price;
+        this.totalPrice = this.price * this.amount;
     }
 
     public int getAmount() {
@@ -73,6 +74,7 @@ public class Product {
 
     public void setAmount(int amount) {
         this.amount = amount;
+        this.totalPrice = this.price * this.amount;
     }
 
     public int getTotalPrice() {

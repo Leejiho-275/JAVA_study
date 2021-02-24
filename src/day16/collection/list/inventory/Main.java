@@ -40,30 +40,60 @@ public class Main {
 
     private static void modifyProduct() {
         System.out.println("수정할 제품의 바코드 번호를 입력하세요.");
+        System.out.print("> ");
         String barcode = sc.next();
-
         Product product = inventory.getProduct(barcode);
 
         if (product != null) {
-            while (true) {
-                System.out.println("제품명, 가격, 재고 중 수정할 항목을 선택하세요.");
-                String select = sc.next();
-                switch (select){
-                    case "제품명":
-//                        String newName = new Product();
-//                        inventory.updateProductName(product,newName);
-                        break;
-                    case "가격":
-                        break;
-                    case "재고":
-                        break;
-                    default:
-                        System.out.println("항목이 존재하지 않습니다.");
-                }
-            }
 
+            System.out.printf("\n# [%s]%s 제품의 수정을 시작합니다.\n", barcode, product.getProductName());
+            System.out.println("[ 1. 가격 수정 | 2. 수량 수정 | 3. 제품명 수정 | 4. 수정 취소 ]");
+            System.out.print("> ");
+
+            int select = 0;
+            try {
+                select = sc.nextInt();
+            } catch (Exception e) {
+                System.out.println("숫자를 입력하세요.");
+            }
+            switch (select) {
+                case 1:
+                    System.out.println("# 수정하실 가격을 입력하세요.");
+                    System.out.print("> ");
+                    int newPrice = sc.nextInt();
+                    inventory.updatePrice(product, newPrice);
+                    break;
+                case 2:
+                    System.out.println("# 수정하실 수량을 입력하세요.");
+                    System.out.print("> ");
+                    int newAmount = sc.nextInt();
+                    inventory.updateAmount(product, newAmount);
+                    break;
+                case 3:
+                    System.out.println("# 수정하실 제품명을 입력하세요.");
+                    System.out.print("> ");
+                    String newName = sc.next();
+                    inventory.updateProductName(product, newName);
+                    break;
+                default:
+                    System.out.println("항목이 존재하지 않습니다.");
+            }
         } else {
             System.out.println("해당 제품은 존재하지 않습니다.");
+        }
+    }
+
+    private static void deleteProduct() {
+        System.out.println("삭제할 제품의 바코드 번호를 입력하세요.");
+        System.out.print("> ");
+        String barcode = sc.next();
+        Product product = inventory.getProduct(barcode);
+
+        if (product != null) {
+            inventory.delete(product);
+            System.out.println("삭제가 정상 처리되었습니다.");
+        } else {
+            System.out.println("\n# 해당 제품은 존재하지 않습니다.");
         }
     }
 
@@ -99,9 +129,10 @@ public class Main {
                     searchProduct();
                     break;
                 case 4:
-
+                    modifyProduct();
                     break;
                 case 5:
+                    deleteProduct();
                     break;
                 case 6:
                     System.out.println("프로그램을 종료합니다.");
