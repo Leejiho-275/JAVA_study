@@ -89,11 +89,7 @@ public class MainClass {
 		 */
         if (!artists.containsKey(artist)) {
             songs = new HashSet<>();
-
-
             songs.add(song);
-
-
             artists.put(artist, songs);
             System.out.printf("# 아티스트 %s님이 신규등록되었습니다.\n", artist);
         } else {
@@ -106,10 +102,19 @@ public class MainClass {
             if (flag) {
                 System.out.println("# 이미 등록된 노래입니다.");
             } else {
+                Set<String> songList = artists.get(artist);
                 songs.add(song);
-                artists.put(artist, songs);
+//                artists.put(artist, songs);
                 System.out.printf("# 아티스트 %s님의 노래목록에 %s이(가) 추가되었습니다.\n", artist, song);
             }
+            /*
+            Set<String> songList = artists.get(artist);
+            if (songList.add(song)) {
+                System.out.printf("# 아티스트 %s님의 노래목록에 %s이(가) 추가되었습니다.\n", artist, song);
+            } else {
+                System.out.println("# 이미 등록된 노래입니다.");
+            }
+            */
         }
 
         saveData();
